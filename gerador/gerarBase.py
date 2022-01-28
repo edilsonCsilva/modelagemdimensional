@@ -72,7 +72,7 @@ def generationSalesYear(year,data_atual ):
              
             
           
-year=2022
+year=2020
 while year !=2023:
     generationSalesYear(year,date.today() )
     year=year+1
