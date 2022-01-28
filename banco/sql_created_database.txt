@@ -1,0 +1,50 @@
+
+
+CREATE TABLE dim_geo_sales (
+    sk_geosales INTEGER PRIMARY KEY AUTOINCREMENT,
+    latitude    TEXT,
+    longitude   TEXT,
+    address     TEXT
+);
+
+
+CREATE TABLE dim_product (
+    sk_product INTEGER PRIMARY KEY AUTOINCREMENT,
+    id         INTEGER NOT NULL,
+    descricao  TEXT,
+    unit_price DOUBLE,
+    photo_path TEXT
+);
+
+
+CREATE TABLE dim_time (
+    sk_time INTEGER PRIMARY KEY AUTOINCREMENT,
+    day     INTEGER,
+    month   INTEGER,
+    year    INTEGER,
+    hours   INTEGER,
+    minute  INTEGER
+);
+
+CREATE TABLE file_control (
+    uuid            INTEGER PRIMARY KEY AUTOINCREMENT
+                            UNIQUE
+                            NOT NULL,
+    name_file       TEXT,
+    procesed_file   INT,
+    created_at      TEXT,
+    etl_executed_at TEXT
+);
+
+
+CREATE TABLE ft_sales (
+    uuid                INTEGER PRIMARY KEY AUTOINCREMENT
+                                UNIQUE,
+    sk_tf_sales_time    INTEGER REFERENCES dim_time (sk_time),
+    sk_tf_category      INTEGER REFERENCES dim_category (sk_category),
+    sk_ft_product       INTEGER REFERENCES dim_product (sk_product),
+    sk_ft_geo_sales     INTEGER REFERENCES dim_geo_sales (sk_geosales),
+    [unit_ price_sales] DOUBLE,
+    quantity_of_items   INT,
+    discount            INTEGER
+);

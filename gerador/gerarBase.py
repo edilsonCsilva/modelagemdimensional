@@ -45,7 +45,7 @@ def generationSalesYear(year,data_atual,address):
          month=salesMonth+1
          for salesDay in range(29):
              day=salesDay+1
-             if(salesDay > 1):
+             if(salesDay == 1):
                  break
 
                 
