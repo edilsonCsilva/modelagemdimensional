@@ -3,6 +3,9 @@ import json
 from operator import ge
 from random import randint
 import random
+from uuid import uuid4
+import uuid
+ 
 import Lib
 import DaoProducts
 from datetime import date
@@ -53,8 +56,8 @@ def generationSalesYear(year,data_atual,address):
              salesAmount=""
              for salesAmountDay in range(amountSales):
                  amountItens=randint(1,10)
-                 uuid=Lib.uniqueid()
-                 uuid=next(uuid)
+                 uuid_= str(uuid.uuid4()).replace("-","")
+                 
                  timeSales=Lib.random_date("1/1/1998 1:30 PM", "1/1/2022 12:50 AM", random.random()).split(" ")
                  timeSales=timeSales[1]
                  geo=address[randint(0,rowsAddress-1)]
@@ -62,11 +65,11 @@ def generationSalesYear(year,data_atual,address):
                  for itens in range(amountItens):
                      amountItensSales=randint(1,10)
                      product=DaoProducts.products[randint(0,len(DaoProducts.products)-1)]
-                     SalesCsv=str(uuid)+";"+str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales+";"+product.description+";"+product.key+";"+product.category+";"+product.photo+";"+str(product.price)+";"+product.note+";"+str(amountItensSales)+";"+str(randint(0,25))+";"+str(geo)
+                     SalesCsv=str(uuid_)+";"+str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales+";"+product.description+";"+product.key+";"+product.category+";"+product.photo+";"+str(product.price)+";"+product.note+";"+str(amountItensSales)+";"+str(randint(0,25))+";"+str(geo)
                      salesAmount=salesAmount+SalesCsv+"\n"
                      
                      Sales.append({
-                         "uuid":uuid,"created_at":str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales,
+                         "uuid":uuid_,"created_at":str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales,
                          "product":product.description,"product_key":product.key,
                          "category":product.category,"photo":product.photo,
                          "price":product.price,"note":product.note,"amount":amountItensSales,
