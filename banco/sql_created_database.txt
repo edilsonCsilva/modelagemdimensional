@@ -1,4 +1,9 @@
 
+CREATE TABLE dim_category (
+    sk_category INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao   TEXT
+);
+
 
 CREATE TABLE dim_geo_sales (
     sk_geosales INTEGER PRIMARY KEY AUTOINCREMENT,
