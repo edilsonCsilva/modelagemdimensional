@@ -4,6 +4,11 @@ Stub.System.Data.SQLite.Core.NetFramework   1.0.115.5
 
 
 
+CREATE TABLE dim_category (
+    sk_category INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao   TEXT
+);
+
 
 CREATE TABLE dim_geo_sales (
     sk_geosales INTEGER PRIMARY KEY AUTOINCREMENT,
