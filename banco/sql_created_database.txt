@@ -1,3 +1,8 @@
+//SQLite Nuget Visual Install
+//system.data.sqlite
+Stub.System.Data.SQLite.Core.NetFramework   1.0.115.5
+
+
 
 
 CREATE TABLE dim_geo_sales (

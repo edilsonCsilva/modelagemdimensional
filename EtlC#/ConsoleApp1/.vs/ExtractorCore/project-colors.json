@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ba65f5bb-1378-4c7c-9f30-b12df5391f0e": {
+      "ProjectGuid": "ba65f5bb-1378-4c7c-9f30-b12df5391f0e",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 0
+    },
+    "4d500fe2-7731-472c-b472-422b32e20e85": {
+      "ProjectGuid": "4d500fe2-7731-472c-b472-422b32e20e85",
+      "DisplayName": "ExtractorCore",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
