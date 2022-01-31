@@ -1,0 +1,88 @@
+
+    using System;  
+      
+    namespace DateTimeFormatInCSharpSample  
+    {  
+        class Program  
+        {  
+            static void Main(string[] args)  
+            {  
+                // Get current DateTime. It can be any DateTime object in your code.  
+                DateTime aDate = DateTime.Now;  
+      
+                // Format Datetime in different formats and display them  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));  
+                Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm"));  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy hh:mm tt"));  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy H:mm"));  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy h:mm tt"));  
+                Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm:ss"));  
+                Console.WriteLine(aDate.ToString("MMMM dd"));  
+                Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));  
+                Console.WriteLine(aDate.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));  
+                Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));  
+                Console.WriteLine(aDate.ToString("HH:mm"));  
+                Console.WriteLine(aDate.ToString("hh:mm tt"));  
+                Console.WriteLine(aDate.ToString("H:mm"));  
+                Console.WriteLine(aDate.ToString("h:mm tt"));  
+                Console.WriteLine(aDate.ToString("HH:mm:ss"));  
+                Console.WriteLine(aDate.ToString("yyyy MMMM"));  
+      
+                Console.ReadKey();  
+            }  
+        }  
+    }  
+
+
+
+private static void ExecuteNonQuery(string queryString)
+{
+    using (var connection = new SQLiteConnection(
+               ConnectionString))
+    {
+        using (var command = new SQLiteCommand(queryString, connection))
+        {
+            command.Connection.Open();
+            command.ExecuteNonQuery();
+        }
+    }
+}
+
+
+
+
+
+
+private void ThreadTask ()
+{
+    int stp;
+    int newval;
+    Random rnd = new Random ();
+
+    while (true)
+    {
+        stp = this.progressBar1.Step * rnd.Next (-1, 2);
+        newval = this.progressBar1.Value + stp;
+        if (newval > this.progressBar1.Maximum)
+            newval = this.progressBar1.Maximum;
+        else if (newval < this.progressBar1.Minimum)
+            newval = this.progressBar1.Minimum;
+        this.progressBar1.Value = newval;
+        Thread.Sleep (100);
+    }
+}
+
+
+
+private void Form1_Load(object sender, System.EventArgs e)
+{
+    Thread trd = new Thread(new ThreadStart(this.ThreadTask));
+    trd.IsBackground = true;
+    trd.Start();
+}
