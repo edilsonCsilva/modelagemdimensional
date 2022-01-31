@@ -62,7 +62,7 @@ namespace ExtractorCore
 
 
 
-                List<string> list = Uteis.getFilesDir(configurations.data_dir_files);
+                List<string> filesDir = Uteis.getFilesDir(configurations.data_dir_files);
 
 
 
