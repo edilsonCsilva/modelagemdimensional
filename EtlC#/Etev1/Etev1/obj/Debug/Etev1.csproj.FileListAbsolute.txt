@@ -17,7 +17,6 @@ C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.dll
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.dll
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.pdb
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.xml
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.AssemblyReference.cache
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.Form1.resources
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.Properties.Resources.resources
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.GenerateResource.cache

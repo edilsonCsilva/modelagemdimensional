@@ -12,6 +12,8 @@ namespace Etev1
 {
     public partial class Form1 : Form
     {
+        ETLCongigurations config;
+        ETLCore EtlApp;
 
         class Response : OnResponse
         {
@@ -25,6 +27,18 @@ namespace Etev1
         public Form1()
         {
             InitializeComponent();
+            config = new ETLCongigurations(
+                 @"C:\ModelagemDimencional\base",
+                 "teste2.db",
+                 @"C:\Users\edi\modelagemdimensional\data"
+                 , 3);
+
+            EtlApp = new ETLCore(config, new Response());
+          
+
+
+
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,22 +52,7 @@ namespace Etev1
         {
             Thread t = new Thread(new ThreadStart(ThreadProc));
             t.Start();
-
-            ETLCongigurations config = new ETLCongigurations(
-                 @"C:\ModelagemDimencional\base",
-                 "teste2.db",
-                 @"C:\Users\edi\modelagemdimensional\data"
-                 , 3);
-
-
-            ETLCore EtlApp = new ETLCore(config, new Response());
             EtlApp.Init();
-          
-
-
-
-
-
         }
 
 
@@ -68,11 +67,9 @@ namespace Etev1
             }
         }
 
-
-
-
-
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
