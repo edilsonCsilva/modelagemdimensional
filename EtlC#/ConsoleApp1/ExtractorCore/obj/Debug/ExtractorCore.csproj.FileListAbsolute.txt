@@ -15,3 +15,11 @@ C:\Users\edi\Documents\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.csproj.
 C:\Users\edi\Documents\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.csproj.CopyComplete
 C:\Users\edi\Documents\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.dll
 C:\Users\edi\Documents\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\bin\Debug\ExtractorCore.dll
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\bin\Debug\ExtractorCore.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\bin\Debug\System.Data.SQLite.dll
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\bin\Debug\System.Data.SQLite.xml
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.csproj.CoreCompileInputs.cache
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.csproj.CopyComplete
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.dll
+C:\Users\edi\modelagemdimensional\EtlC#\ConsoleApp1\ExtractorCore\obj\Debug\ExtractorCore.pdb

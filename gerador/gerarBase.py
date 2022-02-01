@@ -108,7 +108,7 @@ generationSalesYear(year,date.today(),geoMaps )
 while(True):
     try:
          print("Gerando Vendas...\n")
-         r=randint(10,(3*60))
+         r=randint(10,(1*60))
          print("Time Da Proxima Vendas..."+str(r)+"S \n")
          generationSalesYear(year,date.today(),geoMaps )
     except:
