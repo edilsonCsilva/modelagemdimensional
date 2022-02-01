@@ -24,3 +24,4 @@ C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.CoreC
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.CopyComplete
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.exe
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.AssemblyReference.cache

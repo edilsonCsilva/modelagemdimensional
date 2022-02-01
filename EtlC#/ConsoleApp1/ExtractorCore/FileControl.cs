@@ -109,6 +109,102 @@ namespace ExtractorCore
             return files;
         }
 
+        public List<FileControlEntity> All()
+        {
+            List<FileControlEntity> files = new List<FileControlEntity>();
+            try
+            {
+                try
+                {
+
+                    using (var cmd = contex.DbConnection().CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT  uuid, name_file, procesed_file, created_at, etl_executed_at" +
+                                        "  FROM file_control  Where procesed_file=@procesed_file ";
+                        cmd.Parameters.AddWithValue("@procesed_file", 2);
+                        SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
+
+                        if (sQLiteDataReader.HasRows)
+
+                        {
+                            if (sQLiteDataReader.Read())
+                            {
+
+                                FileControlEntity file = new FileControlEntity();
+                                file.uuid = sQLiteDataReader.GetInt32(0);
+                                file.name_file = sQLiteDataReader.GetString(1);
+                                file.procesed_file = sQLiteDataReader.GetInt32(2);
+                                file.created_at = (!sQLiteDataReader.IsDBNull(3)) ? sQLiteDataReader.GetString(3) : "";
+                                file.etl_executed_at = (!sQLiteDataReader.IsDBNull(4)) ? sQLiteDataReader.GetString(4) : "";
+                                files.Add(file);
+
+                            }
+                        }
+
+                        sQLiteDataReader.Close();
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+
+            }
+            return files;
+        }
+
+
+        public string AllString()
+        {
+            string files = "";
+            try
+            {
+                try
+                {
+
+                    using (var cmd = contex.DbConnection().CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT  uuid, name_file, procesed_file, created_at, etl_executed_at" +
+                                        "  FROM file_control  Where procesed_file=@procesed_file ";
+                        cmd.Parameters.AddWithValue("@procesed_file", 2);
+                        SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
+
+                        if (sQLiteDataReader.HasRows)
+
+                        {
+                            while (sQLiteDataReader.Read())
+                            {
+
+                               files += string.Format("{0}|", sQLiteDataReader.GetString(1));
+
+                            }
+                        }
+                        sQLiteDataReader.Close();
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+
+            }
+            return files;
+        }
 
 
 

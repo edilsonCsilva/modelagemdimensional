@@ -31,7 +31,7 @@ namespace ExtractorCore
 
                     using (var cmd = this.contex.DbConnection().CreateCommand())
                     {
-
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "INSERT INTO dim_category(descricao ) values (@descricao)";
                         cmd.Parameters.AddWithValue("@descricao", category);
                         if (cmd.ExecuteNonQuery() > 0)
@@ -67,6 +67,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_category,descricao  FROM dim_category  Where descricao=@description";
                         cmd.Parameters.AddWithValue("@description", category);
 
@@ -83,6 +84,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
@@ -112,6 +114,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_category  , descricao  FROM dim_category  Where  descricao=@description ";
                         cmd.Parameters.AddWithValue("@description", category);
                       
@@ -131,6 +134,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
@@ -160,6 +164,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_category  , descricao  FROM dim_category   ";
                         SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
 
@@ -177,7 +182,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
-
+                        cmd.Connection.Close();
                     }
                 }
                 catch (Exception ex)

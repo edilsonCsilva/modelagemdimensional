@@ -29,7 +29,7 @@ namespace ExtractorCore
 
                     using (var cmd = this.contex.DbConnection().CreateCommand())
                     {
-
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "INSERT INTO dim_geo_sales(latitude, longitude, address ) values (@latitude, @longitude, @address)";
                         cmd.Parameters.AddWithValue("@latitude", latitude);
                         cmd.Parameters.AddWithValue("@longitude",longitude);
@@ -65,6 +65,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_geosales, latitude, longitude, address" +
                                          "  FROM dim_geo_sales  Where latitude=@lat and  longitude=@lng ";
                         cmd.Parameters.AddWithValue("@lat", lat);
@@ -81,6 +82,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
@@ -110,6 +112,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_geosales, latitude, longitude, address" +
                                         "  FROM dim_geo_sales  Where latitude=@lat and  longitude=@lng ";
                         cmd.Parameters.AddWithValue("@lat", lat);
@@ -133,6 +136,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
@@ -162,6 +166,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_geosales, latitude, longitude, address FROM dim_geo_sales ";
                         SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
 
@@ -181,6 +186,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }

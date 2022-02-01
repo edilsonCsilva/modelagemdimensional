@@ -31,5 +31,35 @@ namespace ExtractorCore
 
         }
 
+
+        public static string getNumbers(string value)
+        {
+            return String.Join("", System.Text.RegularExpressions.Regex.Split(value, @"[^\d]"));
+        }
+
+        public static string getDateTime()
+        {
+            DateTime aDate = DateTime.Now;
+            return aDate.ToString("MM/dd/yyyy HH:mm:ss");
+
+        }
+
+        public static bool createdDir(string pathDir)
+        {
+            try
+            {
+                if (!Directory.Exists(pathDir))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(pathDir);
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+
     }
 }

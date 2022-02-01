@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Text;
 
 namespace ExtractorCore
@@ -20,13 +21,18 @@ namespace ExtractorCore
             bool inserted = false;
             try
             {
-                
-                    using (var cmd = this.contex.DbConnection().CreateCommand())
+
+
+           
+                using (var cmd = this.contex.DbConnection().CreateCommand())
                     {
 
-                        cmd.CommandText = "INSERT INTO ft_sales(sk_tf_sales_time, sk_tf_category, sk_ft_product," +
+
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = "INSERT INTO ft_sales(sk_tf_sales_time, sk_tf_category, sk_ft_product," +
                                             " sk_ft_geo_sales, unit_price_sales, quantity_of_items, discount )" +
-                                            " values (@sk_tf_sales_time,@sk_tf_category,@sk_ft_product," +
+                                            " values(@sk_tf_sales_time,@sk_tf_category,@sk_ft_product," +
                                             "@sk_ft_geo_sales,@unit_price_sales,@quantity_of_items,@discount)";
 
 
@@ -36,22 +42,28 @@ namespace ExtractorCore
                         cmd.Parameters.AddWithValue("@sk_ft_geo_sales", sk_ft_geo_sales);
                         cmd.Parameters.AddWithValue("@unit_price_sales", unit_price_sales);
                         cmd.Parameters.AddWithValue("@quantity_of_items", quantity_of_items);
-           
+                        cmd.Parameters.AddWithValue("@discount", discount);
+                       // Console.WriteLine(cmd.CommandText.ToString());
+
+
                     if (cmd.ExecuteNonQuery() > 0)
                         {
                             inserted = true;
-                        }
+                        
+                    }
                         else
                         {
                             inserted = false;
                         }
-                        cmd.Connection.Close();
+                        
+                    cmd.Connection.Close();
+                        
                     }
             
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message.ToString());
+                Console.WriteLine(e);
                 inserted = false;
             }
             return inserted;

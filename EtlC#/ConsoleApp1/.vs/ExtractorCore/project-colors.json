@@ -10,7 +10,12 @@
       "ProjectGuid": "4d500fe2-7731-472c-b472-422b32e20e85",
       "DisplayName": "ExtractorCore",
       "ColorIndex": 1
+    },
+    "5945a011-8422-459d-bf12-1011ce71116f": {
+      "ProjectGuid": "5945a011-8422-459d-bf12-1011ce71116f",
+      "DisplayName": "Etev1",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

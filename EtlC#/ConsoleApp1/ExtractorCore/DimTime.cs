@@ -30,6 +30,7 @@ namespace ExtractorCore
                     using (var cmd = this.contex.DbConnection().CreateCommand())
                     {
 
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "INSERT INTO dim_time(day, month, year,hours,minute ) values (@day, @month, @year,@hours,@minute)";
                         cmd.Parameters.AddWithValue("@day", day);
                         cmd.Parameters.AddWithValue("@month", month);
@@ -71,6 +72,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_time , day, month, year,hours,minute FROM dim_time Where" +
                                         " day=@day and  month=@month and year=@year and hours=@hours and minute=@minute ";
                         cmd.Parameters.AddWithValue("@day", day);
@@ -90,6 +92,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
                     }
 
                 }
@@ -119,6 +122,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_time , day, month, year,hours,minute FROM dim_time Where" +
                                         " day=@day and  month=@month and year=@year and hours=@hours and minute=@minute ";
                         cmd.Parameters.AddWithValue("@day", day);
@@ -146,6 +150,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
                     }
                 }
                 catch (Exception ex)
@@ -174,6 +179,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT sk_time , day, month, year,hours,minute FROM dim_time ";
                         SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
 
@@ -195,6 +201,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
                     }
                 }
                 catch (Exception ex)

@@ -11,7 +11,7 @@ import DaoProducts
 from datetime import date
 import csv
 import os
-
+import time
 
  
 def loadGeo():
@@ -100,7 +100,18 @@ def generationSalesYear(year,data_atual,address):
             
 geoMaps=loadGeo()
 year=2022
-while year !=2023:
-    generationSalesYear(year,date.today(),geoMaps )
-    year=year+1
+#while year !=2023:
+#    generationSalesYear(year,date.today(),geoMaps )
+#    year=year+1
          
+generationSalesYear(year,date.today(),geoMaps )         
+while(True):
+    try:
+         print("Gerando Vendas...\n")
+         r=randint(10,(3*60))
+         print("Time Da Proxima Vendas..."+str(r)+"S \n")
+         generationSalesYear(year,date.today(),geoMaps )
+    except:
+        pass
+
+    time.sleep(r)

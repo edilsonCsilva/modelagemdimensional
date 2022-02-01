@@ -44,3 +44,13 @@ products.append(
     )
 
 
+
+products.append(
+    Product("3831314107",
+            "multifuncional epson ecotank l3250 wi-fi - tanque de tinta",
+            "Impresao",
+            'https://m.media-amazon.com/images/I/61minrTDZmL._AC_SX569_.jpg',
+            1281.90,"De Tinta Adaptavel")
+            
+    )
+

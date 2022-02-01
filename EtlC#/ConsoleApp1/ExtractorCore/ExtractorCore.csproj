@@ -51,6 +51,7 @@
     <Compile Include="Entity\DimTimeEntity.cs" />
     <Compile Include="Entity\FatSalesEntity.cs" />
     <Compile Include="Entity\FileControlEntity.cs" />
+    <Compile Include="ErrorInfo.cs" />
     <Compile Include="ETLCongigurations.cs" />
     <Compile Include="ETLCore.cs" />
     <Compile Include="FactSales.cs" />

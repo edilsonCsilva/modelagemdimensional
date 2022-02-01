@@ -22,8 +22,11 @@ namespace ExtractorCore
             {
                 try
                 {
+            
+
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_product FROM dim_product  Where id=@idproduction ";
                         cmd.Parameters.AddWithValue("@idproduction", idproduction);
                         SQLiteDataReader sQLiteDataReader = cmd.ExecuteReader();
@@ -35,6 +38,11 @@ namespace ExtractorCore
 
                             }
                         }
+
+                        sQLiteDataReader.Close();   
+
+                        cmd.Connection.Close();
+                           
                     }
                 }
                 catch (Exception ex)
@@ -65,9 +73,10 @@ namespace ExtractorCore
 
                     using (var cmd = this.contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
 
                         cmd.CommandText = "INSERT INTO dim_product(id, descricao, unit_price, photo_path)" +
-                            " values (id, descricao, unit_price, photo_path)";
+                            " values (@id, @descricao, @unit_price, @photo_path)";
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@descricao", descricao);
                         cmd.Parameters.AddWithValue("@unit_price", unit_price);
@@ -105,6 +114,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_product, id, descricao, unit_price, photo_path " +
                                         "  FROM dim_product  Where id=@id  ";
                         cmd.Parameters.AddWithValue("@id", id);
@@ -129,6 +139,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
@@ -156,6 +167,7 @@ namespace ExtractorCore
                 {
                     using (var cmd = contex.DbConnection().CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.CommandText = "SELECT  sk_product, id, descricao, unit_price, photo_path " +
                                         "  FROM dim_product    ";
                       
@@ -180,6 +192,7 @@ namespace ExtractorCore
                             }
                         }
                         sQLiteDataReader.Close();
+                        cmd.Connection.Close();
 
                     }
                 }
