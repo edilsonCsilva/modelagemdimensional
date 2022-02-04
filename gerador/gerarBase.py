@@ -49,7 +49,7 @@ def generationSalesYear(year,data_atual,address):
          for salesDay in range(29):
              day=salesDay+1
              if(salesDay == 1):
-                 break
+                 pass
 
                 
              amountSales=randint(1,6)
@@ -77,7 +77,7 @@ def generationSalesYear(year,data_atual,address):
                          "geo":geo
                      })
 
-             print("")
+            
              with open("data\\base_"+str(next(Lib.uniqueid()))+".csv","a") as f:
                      f.write(salesAmount)
      
@@ -99,11 +99,13 @@ def generationSalesYear(year,data_atual,address):
              
             
 geoMaps=loadGeo()
-year=2022
-#while year !=2023:
-#    generationSalesYear(year,date.today(),geoMaps )
-#    year=year+1
-         
+year=2000
+while year !=2023:
+    generationSalesYear(year,date.today(),geoMaps )
+    year=year+1
+
+
+'''        
 generationSalesYear(year,date.today(),geoMaps )         
 while(True):
     try:
@@ -115,3 +117,4 @@ while(True):
         pass
 
     time.sleep(r)
+    '''
