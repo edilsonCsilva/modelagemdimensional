@@ -11,17 +11,31 @@ C:\Users\edi\source\repos\Etev1\Etev1\obj\Debug\Etev1.csproj.CoreCompileInputs.c
 C:\Users\edi\source\repos\Etev1\Etev1\obj\Debug\Etev1.csproj.CopyComplete
 C:\Users\edi\source\repos\Etev1\Etev1\obj\Debug\Etev1.exe
 C:\Users\edi\source\repos\Etev1\Etev1\obj\Debug\Etev1.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\Etev1.exe
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\Etev1.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.dll
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.xml
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.Form1.resources
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.Properties.Resources.resources
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.GenerateResource.cache
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.CoreCompileInputs.cache
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\Etev1.exe
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\Etev1.pdb
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.dll
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.dll
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.pdb
-C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\System.Data.SQLite.xml
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.CopyComplete
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.exe
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.pdb
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.dll
+C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\bin\Debug\ExtractorCore.pdb
 C:\Users\edi\modelagemdimensional\EtlC#\Etev1\Etev1\obj\Debug\Etev1.csproj.AssemblyReference.cache
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\Etev1.exe
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\Etev1.pdb
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\System.Data.SQLite.dll
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\ExtractorCore.pdb
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\System.Data.SQLite.xml
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.csproj.AssemblyReference.cache
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.Form1.resources
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.Properties.Resources.resources
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.csproj.GenerateResource.cache
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.csproj.CoreCompileInputs.cache
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.csproj.CopyComplete
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.exe
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\obj\Debug\Etev1.pdb
+C:\Users\edi\source\repos\Nova pasta\Etev1\Etev1\bin\Debug\ExtractorCore.dll

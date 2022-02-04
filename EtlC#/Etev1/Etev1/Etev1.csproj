@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="ExtractorCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\ConsoleApp1\ExtractorCore\bin\Debug\ExtractorCore.dll</HintPath>
+      <HintPath>..\Dll\ExtractorCore\bin\Debug\ExtractorCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

@@ -44,10 +44,13 @@
     <Compile Include="DimCategory.cs" />
     <Compile Include="DimGeo.cs" />
     <Compile Include="DimProduct.cs" />
+    <Compile Include="DimSale.cs" />
+    <Compile Include="DimState.cs" />
     <Compile Include="DimTime.cs" />
     <Compile Include="Entity\DimCategoryEntity.cs" />
     <Compile Include="Entity\DimGeoEntity.cs" />
     <Compile Include="Entity\DimProducEntity.cs" />
+    <Compile Include="Entity\DimStateEntity.cs" />
     <Compile Include="Entity\DimTimeEntity.cs" />
     <Compile Include="Entity\FatSalesEntity.cs" />
     <Compile Include="Entity\FileControlEntity.cs" />

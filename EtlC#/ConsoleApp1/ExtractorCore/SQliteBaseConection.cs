@@ -74,6 +74,8 @@ namespace ExtractorCore
                 createdTableDimGeoSales();
                 createdTableDimProduct();
                 createdTableDimTime();
+                createdTableDimSales();
+                createdTableDimStatus();
                 createdTableFtSales();
 
             }
@@ -107,6 +109,57 @@ namespace ExtractorCore
                 this.isCreatedBase = isCreatedBase && false;
             }
         }
+
+
+        private void createdTableDimSales()
+        {
+            try
+            {
+                using (var cmd = this.DbConnection().CreateCommand())
+                {
+                    cmd.CommandText = "CREATE TABLE  IF NOT EXISTS dim_sales(" +
+                        "  sk_sales    INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "  uuid_sales TEXT," +
+                         " description TEXT" +
+                        ");";
+
+
+                    cmd.ExecuteNonQuery();
+                    this.isCreatedBase = isCreatedBase && true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                this.isCreatedBase = isCreatedBase && false;
+            }
+        }
+
+
+        private void createdTableDimStatus()
+        {
+            try
+            {
+                using (var cmd = this.DbConnection().CreateCommand())
+                {
+                    cmd.CommandText = "CREATE TABLE  IF NOT EXISTS dim_state(" +
+                        " sk_state    INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " description TEXT" +
+                        ");";
+
+
+                    cmd.ExecuteNonQuery();
+                    this.isCreatedBase = isCreatedBase && true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                this.isCreatedBase = isCreatedBase && false;
+            }
+        }
+
+
 
 
 
@@ -231,6 +284,8 @@ namespace ExtractorCore
                         "sk_tf_category      INTEGER REFERENCES dim_category (sk_category)," +
                         "sk_ft_product       INTEGER REFERENCES dim_product (sk_product)," +
                         "sk_ft_geo_sales     INTEGER REFERENCES dim_geo_sales (sk_geosales)," +
+                        "sk_sales            INTEGER REFERENCES dim_sales (sk_sales)," +
+                        "sk_state            INTEGER REFERENCES dim_state (sk_state)," +
                         "unit_price_sales    DOUBLE," +
                         "quantity_of_items   INTEGER," +
                         "discount            INTEGER" +

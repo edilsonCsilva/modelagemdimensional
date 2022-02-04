@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtractorCore.Entity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -20,6 +21,9 @@ namespace ExtractorCore
         private DimProduct DimProduct = null;
         private FactSales FactSales = null; 
         private FileControl FileControl = null;
+        private DimState DimState = null;
+        private DimSale DimSale = null;
+        List<DimStateEntity> dimStateEntities = null;
         private bool isDirCopyRaw=false;
 
 
@@ -45,6 +49,9 @@ namespace ExtractorCore
                 this.FileControl=new FileControl(new SQliteBaseConection(configurations.data_dir_base, configurations.data_name_base));  
                 this.FactSales = new FactSales(new SQliteBaseConection(configurations.data_dir_base, configurations.data_name_base));    
                 this.DimCategory=new DimCategory(new SQliteBaseConection(configurations.data_dir_base, configurations.data_name_base));
+                this.DimState = new DimState(new SQliteBaseConection(configurations.data_dir_base, configurations.data_name_base));
+                this.DimSale = new DimSale(new SQliteBaseConection(configurations.data_dir_base, configurations.data_name_base));
+
                 this.isDirCopyRaw=Uteis.createdDir(configurations.data_dir_files_raw);
                 this.App = new Thread(new ThreadStart(this.ThreadTask));
                 this.App.IsBackground = true;
@@ -75,7 +82,8 @@ namespace ExtractorCore
 
         private void ThreadTask()
         {
-
+            Random randNum = new Random();
+            dimStateEntities = DimState.allState();
             fileAlreadyProcessed = FileControl.AllString();
             while (true)
             {
@@ -83,7 +91,7 @@ namespace ExtractorCore
                 try
                 {
                     String line;
-                    int SurrogateTime = 0, SurrogateCategory = 0, SurrogateGeo = 0, SurrogateProduct = 0, SurrogateFile=0; 
+                    int SurrogateTime = 0, SurrogateCategory = 0, SurrogateGeo = 0, SurrogateProduct = 0, SurrogateFile=0, SurrogateSales=0, SurrogateState=0; 
                    
                     List<string> filesDir = Uteis.getFilesDir(configurations.data_dir_files);
                     foreach (string file in filesDir)
@@ -98,6 +106,7 @@ namespace ExtractorCore
                                 string [] rows = line.Split(';');
                                 if(rows.Length == 11)
                                 {
+
                                     rows[10] = rows[10].Replace('[', ' ');
                                     rows[10] = rows[10].Replace(']', ' ');
                                     string [] dataParse = rows[1].Split(' ');
@@ -163,10 +172,25 @@ namespace ExtractorCore
                                         }
                                     }
 
-                                    if(SurrogateTime > 0 && SurrogateCategory > 0 && SurrogateGeo > 0 && SurrogateProduct > 0)
+
+                                    SurrogateSales = DimSale.BySkUuidSales(rows[0]);
+                                    if (SurrogateSales == 0)
+                                    {
+                                       
+                                        string descript = "Minha Venda - " + randNum.Next(1, 9999).ToString();
+
+                                        if (DimSale.Add(rows[0],descript))
+                                        {
+                                            SurrogateSales = DimSale.BySkUuidSales(rows[0]);
+                                        }
+                                    }
+                                    SurrogateState = dimStateEntities[(randNum.Next(0, dimStateEntities.Count - 1))].sk_state;
+
+                                    if (SurrogateTime > 0 && SurrogateCategory > 0 && SurrogateGeo > 0 && SurrogateProduct > 0
+                                        && SurrogateSales >0 && SurrogateState > 0)
                                     {
   
-                                        if(FactSales.Add(SurrogateTime, SurrogateCategory, SurrogateProduct, SurrogateGeo, 
+                                        if(FactSales.Add(SurrogateTime, SurrogateCategory, SurrogateProduct, SurrogateGeo, SurrogateSales, SurrogateState,
                                                         Double.Parse(rows[6]),Int32.Parse(rows[8]),Int32.Parse(rows[9])))
                                         {
                                             SurrogateFile = FileControl.BySkNameFile(file);
