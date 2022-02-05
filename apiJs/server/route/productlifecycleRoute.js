@@ -14,6 +14,16 @@ router.get('/productlifecycle/:id', async function (req, res) {
     }
 })
 
+router.get('/productlifecycleuuid/:uuid', async function (req, res) {
+    // console.log(req)
+    try {
+        const productionLifes = await productlifecycleService.productlifeUuid((req.params.uuid))
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })       
+    }
+})
+
 router.get('/productlifecycleyear/:year', async function (req, res) {
     try {
         const productionLifes = await productlifecycleService.productlifeAllYear((req.params.year))

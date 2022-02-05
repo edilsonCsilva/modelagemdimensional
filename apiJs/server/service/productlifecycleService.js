@@ -9,11 +9,18 @@ exports.productlifeBy = function (id) {
     } catch (e) {
         throw new Error(e.message);
     }
-
-
-
-
 }
+
+exports.productlifeUuid = function (uuid) {
+
+    try {
+        return productlifecycleData.productlifeUuid(uuid)
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
+
+
 exports.productlifeAllYear = async function (year) {
     try {
         year = parseInt(year)
