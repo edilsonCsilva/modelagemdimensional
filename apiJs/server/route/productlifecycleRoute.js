@@ -7,21 +7,56 @@ const productlifecycleService = require("./../service/productlifecycleService")
 router.get('/productlifecycle/:id', async function (req, res) {
     // console.log(req)
     try {
-        const productionLifes = await productlifecycleService.productlifeBy(parseInt(req.params.id))
+        const productionLifes = await productlifecycleService.productlifeBy((req.params.id))
         res.status(200).json(productionLifes)
     } catch (e) {
-        res.status(404).end()
+        res.status(500).json({ error: e.message })       
     }
 })
 
 router.get('/productlifecycleyear/:year', async function (req, res) {
     try {
-        const productionLifes = await productlifecycleService.productlifeAllYear(parseInt(req.params.year))
+        const productionLifes = await productlifecycleService.productlifeAllYear((req.params.year))
         res.status(200).json(productionLifes)
     } catch (e) {
-        res.status(500).end()
+        res.status(500).json({ error: e.message })
     }
 })
+
+
+router.get('/productlifecycleyearmonthorderquatitysolid/:year/:month/:order?', async function (req, res) {
+    try {
+        var order=(req.params.order==undefined) ? 'quality':req.params.order
+        const productionLifes = await productlifecycleService.
+                                productlifeYearMonthOrderQualitySold(req.params.year,req.params.month,order)
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+router.get('/productlifecycleyearmonthlysales/:year', async function (req, res) {
+    try {
+       
+        const productionLifes = await productlifecycleService.summaryMonthlySales(req.params.year)
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+router.get('/productlifecycleyearysales8020/:year', async function (req, res) {
+    try {
+       
+        const productionLifes = await productlifecycleService.accumulatedProductsMonthlySales(req.params.year)
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
 
 
 

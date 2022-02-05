@@ -1,0 +1,40 @@
+//////////////////////////////
+//Consulta Realizados
+/////////////////////////////
+
+ 
+
+select p.sk_product,p.id as uuid,p.descricao as description,p.photo_path,ct.descricao as departement,
+fs.unit_price_sales as sale_price,fs.quantity_of_items as quality_sold,fs.discount
+from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
+join dim_product p on fs.sk_ft_product=p.sk_product
+join dim_category ct on fs.sk_tf_category=ct.sk_category
+where t.year=2020 and t.month=1 order by fs.quantity_of_items desc
+
+
+
+
+select  t.month,
+sum(fs.quantity_of_items) as qualityYear,
+sum(fs.unit_price_sales * fs.quantity_of_items) as salesYear,
+sum(fs.discount) as discontYear
+from ft_sales fs
+join dim_time t on t.sk_time=fs.sk_tf_sales_time
+where t.year=2019   group by t.month
+
+
+select p.sk_product,p.id as uuid,p.descricao as description,p.photo_path,
+sum(fs.unit_price_sales*fs.quantity_of_items) as sales
+from ft_sales fs
+join dim_time t on t.sk_time=fs.sk_tf_sales_time
+join dim_product p on fs.sk_ft_product=p.sk_product
+where t.year=`+year+`    group by  p.sk_product,p.id ,p.descricao
+order by sales desc
+
+
+
+
+
+
+
+
