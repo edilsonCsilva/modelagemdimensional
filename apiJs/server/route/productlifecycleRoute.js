@@ -70,6 +70,29 @@ router.get('/productlifecycleyearysales8020/:year', async function (req, res) {
 
 
 
+router.get('/productlifeYearMonthOrderQualitySoldHours/:year/:month/:day/:hours/:order?', async function (req, res) {
+    try {
+        var order=(req.params.order==undefined) ? 'quality':req.params.order
+
+        
+        const productionLifes = await productlifecycleService.
+                     productlifeYearMonthOrderQualitySoldHours(
+                         req.params.year,
+                         req.params.month,
+                         req.params.hours,
+                         req.params.day,
+                         order)
+
+
+                        
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+
 
 
 module.exports = router

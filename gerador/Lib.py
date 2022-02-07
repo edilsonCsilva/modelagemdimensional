@@ -1,5 +1,5 @@
 import random
-from random import randrange
+from random import randint, randrange
 from datetime import timedelta
 import time
 
@@ -21,3 +21,9 @@ def str_time_prop(start, end, format, prop):
 def random_date(start, end, prop):
     return str_time_prop(start, end, '%m/%d/%Y %I:%M %p', prop)
     
+
+
+
+def getTime():
+    return  "{0}:{1}".format(str(randint(0,23)).rjust(2, '0'),str(randint(0,59)).rjust(2, '0'))
+

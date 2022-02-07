@@ -59,17 +59,18 @@ def generationSalesYear(year,data_atual,address):
                  uuid_= str(uuid.uuid4()).replace("-","")
                  
                  timeSales=Lib.random_date("1/1/1998 1:30 PM", "1/1/2022 12:50 AM", random.random()).split(" ")
-                 timeSales=timeSales[1]
+                # timeSales=timeSales[1]
+                 timeSales=Lib.getTime()
                  geo=address[randint(0,rowsAddress-1)]
 
                  for itens in range(amountItens):
                      amountItensSales=randint(1,10)
                      product=DaoProducts.products[randint(0,len(DaoProducts.products)-1)]
-                     SalesCsv=str(uuid_)+";"+str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales+";"+product.description+";"+product.key+";"+product.category+";"+product.photo+";"+str(product.price)+";"+product.note+";"+str(amountItensSales)+";"+str(randint(0,25))+";"+str(geo)
+                     SalesCsv=str(uuid_)+";"+str(day).rjust(2, '0')+"-"+str(month).rjust(2, '0')+"-"+str(year)+" "+timeSales+";"+product.description+";"+product.key+";"+product.category+";"+product.photo+";"+str(product.price)+";"+product.note+";"+str(amountItensSales)+";"+str(randint(0,25))+";"+str(geo)
                      salesAmount=salesAmount+SalesCsv+"\n"
                      
                      Sales.append({
-                         "uuid":uuid_,"created_at":str(day)+"-"+str(month)+"-"+str(year)+" "+timeSales,
+                         "uuid":uuid_,"created_at":str(day).rjust(2, '0')+"-"+str(month).rjust(2, '0')+"-"+str(year)+" "+timeSales,
                          "product":product.description,"product_key":product.key,
                          "category":product.category,"photo":product.photo,
                          "price":product.price,"note":product.note,"amount":amountItensSales,
@@ -99,10 +100,19 @@ def generationSalesYear(year,data_atual,address):
              
             
 geoMaps=loadGeo()
-year=2000
+year=2022
 while year !=2023:
-    generationSalesYear(year,date.today(),geoMaps )
-    year=year+1
+    try:
+        print("Gerando Vendas...\n")
+        r=randint(10,(1*60))
+        generationSalesYear(year,date.today(),geoMaps )
+        year=year+1
+    except:
+        pass
+
+    time.sleep(r)
+
+
 
 
 '''        

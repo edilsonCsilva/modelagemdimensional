@@ -126,12 +126,13 @@ exports.productlifeYearMonthOrderQualitySold = async function (year, month, orde
             orderDefined = ' order by fs.unit_price_sales desc'
         }
         sql = `
-            select p.sk_product,p.id as uuid,p.descricao as description,p.photo_path,ct.descricao as departement,
-            fs.unit_price_sales as sale_price,fs.quantity_of_items as quality_sold,fs.discount
-            from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
-            join dim_product p on fs.sk_ft_product=p.sk_product
-            join dim_category ct on fs.sk_tf_category=ct.sk_category
-            where t.year=`+ year + ` and t.month=` + month + `  ` + orderDefined + `
+                select p.sk_product,p.id as uuid,p.descricao as description,p.photo_path,ct.descricao as departement,
+                sum(fs.unit_price_sales) as sale_price,sum(fs.quantity_of_items) as quality_sold,sum(fs.discount) as discount
+                from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
+                join dim_product p on fs.sk_ft_product=p.sk_product
+                join dim_category ct on fs.sk_tf_category=ct.sk_category
+                where t.year=`+year+` and t.month=`+month+`   group by 
+                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+orderDefined+`
         `
         var rows = await SQLITE.db_all(sql)
         for (interacting = 0; interacting < rows.length; interacting++) {
@@ -144,6 +145,44 @@ exports.productlifeYearMonthOrderQualitySold = async function (year, month, orde
         throw new Error(e.message);
     }
 }
+
+
+
+exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month,day,hours, order) {
+    try {
+        const SQLITE = require("../infra/async")
+        var cycleProducts = []
+        var orderDefined = " order by fs.quantity_of_items desc"
+        var hours=(hours+6 > 23) ? 0 : hours+6
+        if (order == "price") {
+            orderDefined = ' order by fs.unit_price_sales desc'
+        }
+
+        sql = `
+               
+                select p.sk_product,p.id as uuid,p.descricao as description,p.photo_path,ct.descricao as departement,
+                sum(fs.unit_price_sales) as sale_price,sum(fs.quantity_of_items) as quality_sold,sum(fs.discount) as discount,
+                t.hours,t.minute
+                from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
+                join dim_product p on fs.sk_ft_product=p.sk_product
+                join dim_category ct on fs.sk_tf_category=ct.sk_category
+                where t.year=`+year+` and t.month=`+month+` and t.day=`+day+` and
+                (t.hours > `+(hours-6)+` and t.hours <= `+(hours)+` )   group by 
+                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+orderDefined+`
+        `
+      
+        var rows = await SQLITE.db_all(sql)
+        for (interacting = 0; interacting < rows.length; interacting++) {
+            cycleProducts.push(rows[interacting])
+        }
+
+        return cycleProducts
+    } catch (e) {
+
+        throw new Error(e.message);
+    }
+}
+
 
 
 

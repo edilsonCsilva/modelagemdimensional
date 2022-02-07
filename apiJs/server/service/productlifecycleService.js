@@ -68,3 +68,16 @@ exports.accumulatedProductsMonthlySales = async function (year) {
         throw new Error(e.message);
     }
 }
+
+
+
+exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month,day,hours, order) {
+    try {
+        year = parseInt(year)
+        month = parseInt(month)
+        if (isNaN(year) || isNaN(month)) throw new Error("Parametes as Not Number");
+        return productlifecycleData.productlifeYearMonthOrderQualitySoldHours(year, month,day,hours, order)
+    } catch (e) {
+        throw new Error(e.message);
+    }
+} 
