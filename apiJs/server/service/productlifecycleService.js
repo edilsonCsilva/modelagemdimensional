@@ -81,3 +81,27 @@ exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month,
         throw new Error(e.message);
     }
 } 
+
+exports.salesProductsYears = async function (year) {
+    try {
+        return productlifecycleData.salesProductsYears(year)
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
+
+
+exports.dimTimeAllYears = async function () {
+    try {
+        return productlifecycleData.dimTimeAllYears()
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
+ 
+
+
+
+
+
+ 

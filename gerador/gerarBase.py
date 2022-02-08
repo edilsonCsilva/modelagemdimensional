@@ -100,11 +100,13 @@ def generationSalesYear(year,data_atual,address):
              
             
 geoMaps=loadGeo()
+
 year=2022
 while year !=2023:
+    r=randint(10,(1*60))
     try:
-        print("Gerando Vendas...\n")
-        r=randint(10,(1*60))
+        print("Gerando Vendas...("+str(year)+")\n")
+        
         generationSalesYear(year,date.today(),geoMaps )
         year=year+1
     except:
@@ -112,10 +114,9 @@ while year !=2023:
 
     time.sleep(r)
 
-
-
-
-'''        
+'''
+year=2021
+        
 generationSalesYear(year,date.today(),geoMaps )         
 while(True):
     try:
@@ -127,4 +128,5 @@ while(True):
         pass
 
     time.sleep(r)
+    
     '''
