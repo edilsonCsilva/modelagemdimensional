@@ -45,6 +45,25 @@ exports.productlifeUuid = async function (uuid) {
     try {
         const SQLITE = require("../infra/async")
         var cycleProducts = []
+        var cycleProductsGeo = []
+        var cycleProductsDetais=null
+
+        sqlDimProduct=`
+                select * from  dim_product p where p.id='`+uuid+`'
+
+        
+        `
+
+        sqlgeo = ` 
+        select  t.year,  geo.latitude,geo.longitude,sum(geo.sk_geosales) as qt
+            from   dim_product p 
+            join ft_sales fs on p.sk_product=fs.sk_ft_product 
+            join dim_geo_sales geo on fs.sk_ft_geo_sales=geo.sk_geosales
+            join dim_time t on fs.sk_tf_sales_time=t.sk_time
+            where p.id='`+uuid+`'
+            group by t.year, geo.latitude,geo.longitude  
+            order by t.year desc    
+        `
         sql = `
 
             select t.year ,ct.descricao as departament,fs.unit_price_sales as subtotal, count(*) as qt,
@@ -54,7 +73,7 @@ exports.productlifeUuid = async function (uuid) {
             join dim_time t on t.sk_time=fs.sk_tf_sales_time 
             join dim_geo_sales g on fs.sk_ft_geo_sales=g.sk_geosales
             join dim_product p on fs.sk_ft_product=p.sk_product
-            where p.id='`+uuid+`'
+            where p.id='`+ uuid + `'
             group by t.year,ct.descricao,fs.unit_price_sales order by t.year, qt desc
             
             
@@ -62,9 +81,20 @@ exports.productlifeUuid = async function (uuid) {
         `
 
         var rows = await SQLITE.db_all(sql)
+        var rowsGeo = await SQLITE.db_all(sqlgeo)
+        var rowsDimProduct = await SQLITE.db_all(sqlDimProduct)
         var products = {
+            "productDetais":null,
             "sales_amount": { "sales_amount": 0, "discont_amount": 0 },
-            "lifeCycles": []
+            "lifeCycles": [],
+            "geoSales": []
+        }
+
+
+        
+
+         for (interacting = 0; interacting < rowsDimProduct.length; interacting++) {
+                cycleProductsDetais=rowsDimProduct[interacting]
         }
 
         for (interacting = 0; interacting < rows.length; interacting++) {
@@ -75,7 +105,18 @@ exports.productlifeUuid = async function (uuid) {
             rows[interacting].longitude = parseFloat(rows[interacting].longitude.replace("'", ''))
             cycleProducts.push(rows[interacting])
         }
+
+        for (interacting = 0; interacting < rowsGeo.length; interacting++) {
+          
+            rowsGeo[interacting].latitude = parseFloat(rowsGeo[interacting].latitude.replace("'", ''))
+            rowsGeo[interacting].longitude = parseFloat(rowsGeo[interacting].longitude.replace("'", ''))
+            cycleProductsGeo.push(rowsGeo[interacting])
+        }
+
+        products.geoSales=cycleProductsGeo
         products.lifeCycles = cycleProducts
+        products.productDetais=cycleProductsDetais
+
         return products
 
     } catch (e) {
@@ -131,8 +172,8 @@ exports.productlifeYearMonthOrderQualitySold = async function (year, month, orde
                 from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
                 join dim_product p on fs.sk_ft_product=p.sk_product
                 join dim_category ct on fs.sk_tf_category=ct.sk_category
-                where t.year=`+year+` and t.month=`+month+`   group by 
-                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+orderDefined+`
+                where t.year=`+ year + ` and t.month=` + month + `   group by 
+                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+ orderDefined + `
         `
         var rows = await SQLITE.db_all(sql)
         for (interacting = 0; interacting < rows.length; interacting++) {
@@ -148,12 +189,12 @@ exports.productlifeYearMonthOrderQualitySold = async function (year, month, orde
 
 
 
-exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month,day,hours, order) {
+exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month, day, hours, order) {
     try {
         const SQLITE = require("../infra/async")
         var cycleProducts = []
         var orderDefined = " order by fs.quantity_of_items desc"
-        var hours=(hours+2 > 23) ? 0 : hours+2
+        var hours = (hours + 2 > 23) ? 0 : hours + 2
         if (order == "price") {
             orderDefined = ' order by fs.unit_price_sales desc'
         }
@@ -166,11 +207,11 @@ exports.productlifeYearMonthOrderQualitySoldHours = async function (year, month,
                 from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
                 join dim_product p on fs.sk_ft_product=p.sk_product
                 join dim_category ct on fs.sk_tf_category=ct.sk_category
-                where t.year=`+year+` and t.month=`+month+` and t.day=`+day+` and
-                (t.hours > `+(hours-2)+` and t.hours <= `+(hours)+` )   group by 
-                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+orderDefined+`
+                where t.year=`+ year + ` and t.month=` + month + ` and t.day=` + day + ` and
+                (t.hours > `+ (hours - 2) + ` and t.hours <= ` + (hours) + ` )   group by 
+                p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao  `+ orderDefined + `
         `
-      
+
         var rows = await SQLITE.db_all(sql)
         for (interacting = 0; interacting < rows.length; interacting++) {
             cycleProducts.push(rows[interacting])
@@ -248,12 +289,12 @@ exports.accumulatedProductsMonthlySales = async function (year) {
 exports.salesProductsYears = async function (year) {
     try {
 
-        
+
         const SQLITE = require("../infra/async")
         var cycleProducts = []
-        var where=""
-        if(year!=null){
-            where=" where t.year="+year
+        var where = ""
+        if (year != null) {
+            where = " where t.year=" + year
         }
 
 
@@ -263,7 +304,7 @@ exports.salesProductsYears = async function (year) {
             from ft_sales fs join dim_time t on t.sk_time=fs.sk_tf_sales_time
             join dim_product p on fs.sk_ft_product=p.sk_product
             join dim_category ct on fs.sk_tf_category=ct.sk_category
-            `+where+`
+            `+ where + `
             group by p.sk_product,p.id,p.descricao,p.photo_path,ct.descricao,t.year
             order by t.year desc
         `
@@ -301,6 +342,34 @@ exports.dimTimeAllYears = async function () {
     }
 }
 
+
+
+
+
+
+exports.cicleLifeProducts = async function () {
+    try {
+        const SQLITE = require("../infra/async")
+        var cycleProducts = []
+
+        sql = `
+                select distinct p.sk_product,p.id as uuid,p.descricao as description,p.photo_path                 
+                from ft_sales fs
+                join dim_time t on t.sk_time=fs.sk_tf_sales_time
+                join dim_product p on fs.sk_ft_product=p.sk_product
+       
+        `
+        var rows = await SQLITE.db_all(sql)
+        for (interacting = 0; interacting < rows.length; interacting++) {
+            cycleProducts.push(rows[interacting])
+        }
+
+        return cycleProducts
+    } catch (e) {
+
+        throw new Error(e.message);
+    }
+}
 
 
 

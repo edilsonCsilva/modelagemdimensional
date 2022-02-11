@@ -98,6 +98,14 @@ exports.dimTimeAllYears = async function () {
         throw new Error(e.message);
     }
 }
+
+exports.cicleLifeProducts = async function () {
+    try {
+        return productlifecycleData.cicleLifeProducts()
+    } catch (e) {
+        throw new Error(e.message);
+    }
+} 
  
 
 

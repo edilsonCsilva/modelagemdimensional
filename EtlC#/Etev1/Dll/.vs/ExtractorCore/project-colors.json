@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4d500fe2-7731-472c-b472-422b32e20e85": {
+      "ProjectGuid": "4d500fe2-7731-472c-b472-422b32e20e85",
+      "DisplayName": "ExtractorCore",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

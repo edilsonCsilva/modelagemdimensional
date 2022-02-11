@@ -117,6 +117,19 @@ router.get('/dimTimeAllYears', async function (req, res) {
         res.status(500).json({ error: e.message })
     }
 })
+
+router.get('/cicleLifeProducts', async function (req, res) {
+    try {
+        const productionLifes = await productlifecycleService.cicleLifeProducts()
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+
+ 
  
 
 
