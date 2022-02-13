@@ -109,6 +109,29 @@ exports.cicleLifeProducts = async function () {
  
 
 
+exports.resumeSalesYears = async function (year) {
+    try {
+        return productlifecycleData.resumeSalesYears(year)
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
+
+exports.resumeSalesYearsQuality = async function (year) {
+    try {
+        return productlifecycleData.resumeSalesYearsQuality(year)
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
+
+exports.generalSummaryByYear = async function (year) {
+    try {
+        return productlifecycleData.generalSummaryByYear()
+    } catch (e) {
+        throw new Error(e.message);
+    }
+}
 
 
 

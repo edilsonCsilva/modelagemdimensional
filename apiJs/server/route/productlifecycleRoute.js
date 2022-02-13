@@ -34,6 +34,39 @@ router.get('/productlifecycleyear/:year', async function (req, res) {
 })
 
 
+router.get('/resumeSalesYears/:year', async function (req, res) {
+    try {
+        const productionLifes = await productlifecycleService.resumeSalesYears((req.params.year))
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+router.get('/resumeSalesYearsQuality/:year', async function (req, res) {
+    try {
+        const productionLifes = await productlifecycleService.resumeSalesYearsQuality((req.params.year))
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+router.get('/generalSummaryByYear', async function (req, res) {
+    try {
+        const productionLifes = await productlifecycleService.generalSummaryByYear()
+        res.status(200).json(productionLifes)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
+
+
+
+
+
+
 router.get('/productlifecycleyearmonthorderquatitysolid/:year/:month/:order?', async function (req, res) {
     try {
         var order = (req.params.order == undefined) ? 'quality' : req.params.order

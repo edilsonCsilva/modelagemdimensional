@@ -321,6 +321,94 @@ exports.salesProductsYears = async function (year) {
 }
 
 
+
+
+exports.resumeSalesYears = async function (year) {
+    try {
+
+
+        const SQLITE = require("../infra/async")
+        var cycleProducts = []
+       
+
+        sql = `
+                select t.month,sum((fs.unit_price_sales * fs.quantity_of_items)) as sales from ft_sales fs 
+                join dim_time t on  t.sk_time=fs.sk_tf_sales_time
+                where t.year=`+year+` group by  t.month
+        `
+        var rows = await SQLITE.db_all(sql)
+        for (interacting = 0; interacting < rows.length; interacting++) {
+            cycleProducts.push(rows[interacting])
+        }
+
+        return cycleProducts
+    } catch (e) {
+
+        throw new Error(e.message);
+    }
+}
+
+
+
+exports.generalSummaryByYear = async function () {
+    try {
+
+
+        const SQLITE = require("../infra/async")
+        var cycleProducts = []
+        sql = `
+                select t.year,sum((fs.quantity_of_items)) as quality,
+                sum((fs.unit_price_sales*fs.quantity_of_items)) as sales,
+                sum((fs.discount)) as discont
+                from ft_sales fs 
+                join dim_time t on  t.sk_time=fs.sk_tf_sales_time
+                group by  t.year order by  t.year desc    
+        `
+        var rows = await SQLITE.db_all(sql)
+        for (interacting = 0; interacting < rows.length; interacting++) {
+            cycleProducts.push(rows[interacting])
+        }
+
+        return cycleProducts
+    } catch (e) {
+
+        throw new Error(e.message);
+    }
+}
+
+
+exports.resumeSalesYearsQuality = async function (year) {
+    try {
+
+
+        const SQLITE = require("../infra/async")
+        var cycleProducts = []
+       
+
+        sql = `
+                select t.month,sum((fs.quantity_of_items)) as sales from ft_sales fs 
+                join dim_time t on  t.sk_time=fs.sk_tf_sales_time
+                where t.year=`+year+` group by  t.month
+        `
+        var rows = await SQLITE.db_all(sql)
+        for (interacting = 0; interacting < rows.length; interacting++) {
+            cycleProducts.push(rows[interacting])
+        }
+
+        return cycleProducts
+    } catch (e) {
+
+        throw new Error(e.message);
+    }
+}
+
+
+
+
+
+
+
+
 exports.dimTimeAllYears = async function () {
     try {
         const SQLITE = require("../infra/async")
